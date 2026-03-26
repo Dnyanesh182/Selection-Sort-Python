@@ -1,35 +1,44 @@
-# UC2 – Modify Selection Sort to sort array in descending order.
+# UC3 – Count number of comparisons and swaps performed during sorting.
 
-def selection_sort_desc(arr: list[int]) -> list[int]:
+def selection_sort_with_metrics(arr: list[int]) -> tuple[list[int], int, int]:
     """
-    Perform Selection Sort in descending order.
+    Selection Sort with performance metrics.
+
+    Returns:
+    - sorted array
+    - number of comparisons
+    - number of swaps
 
     Time Complexity: O(n^2)
-    Space Complexity: O(1)
     """
     n = len(arr)
+    comparisons = 0
+    swaps = 0
 
     for i in range(n):
-        max_index = i
+        min_index = i
 
-        # Find index of maximum element
         for j in range(i + 1, n):
-            if arr[j] > arr[max_index]:
-                max_index = j
+            comparisons += 1
+            if arr[j] < arr[min_index]:
+                min_index = j
 
-        # Swap if needed
-        if max_index != i:
-            arr[i], arr[max_index] = arr[max_index], arr[i]
+        if min_index != i:
+            arr[i], arr[min_index] = arr[min_index], arr[i]
+            swaps += 1
 
-    return arr
+    return arr, comparisons, swaps
 
 
 def main() -> None:
     arr = [64, 25, 12, 22, 11]
 
     print(f"Original Array: {arr}")
-    sorted_arr = selection_sort_desc(arr)
-    print(f"Sorted Array (Descending): {sorted_arr}")
+    sorted_arr, comparisons, swaps = selection_sort_with_metrics(arr)
+
+    print(f"Sorted Array: {sorted_arr}")
+    print(f"Comparisons: {comparisons}")
+    print(f"Swaps: {swaps}")
 
 
 if __name__ == "__main__":
