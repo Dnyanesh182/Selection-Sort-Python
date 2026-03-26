@@ -1,8 +1,8 @@
-# UC1 – Implement basic Selection Sort to sort an array in ascending order.
+# UC2 – Modify Selection Sort to sort array in descending order.
 
-def selection_sort(arr: list[int]) -> list[int]:
+def selection_sort_desc(arr: list[int]) -> list[int]:
     """
-    Perform Selection Sort in ascending order.
+    Perform Selection Sort in descending order.
 
     Time Complexity: O(n^2)
     Space Complexity: O(1)
@@ -10,16 +10,16 @@ def selection_sort(arr: list[int]) -> list[int]:
     n = len(arr)
 
     for i in range(n):
-        min_index = i
+        max_index = i
 
-        # Find index of minimum element
+        # Find index of maximum element
         for j in range(i + 1, n):
-            if arr[j] < arr[min_index]:
-                min_index = j
+            if arr[j] > arr[max_index]:
+                max_index = j
 
         # Swap if needed
-        if min_index != i:
-            arr[i], arr[min_index] = arr[min_index], arr[i]
+        if max_index != i:
+            arr[i], arr[max_index] = arr[max_index], arr[i]
 
     return arr
 
@@ -28,8 +28,8 @@ def main() -> None:
     arr = [64, 25, 12, 22, 11]
 
     print(f"Original Array: {arr}")
-    sorted_arr = selection_sort(arr)
-    print(f"Sorted Array: {sorted_arr}")
+    sorted_arr = selection_sort_desc(arr)
+    print(f"Sorted Array (Descending): {sorted_arr}")
 
 
 if __name__ == "__main__":
