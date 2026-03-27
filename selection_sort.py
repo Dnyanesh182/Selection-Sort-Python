@@ -1,31 +1,17 @@
-# UC6 – Sort custom objects using Selection Sort with key (e.g., sort by age).
+# UC7 – Analyze time complexity of Selection Sort with different input sizes.
 
-class Person:
-    """
-    Represents a person with name and age.
-    """
-
-    def __init__(self, name: str, age: int) -> None:
-        self.name = name
-        self.age = age
-
-    def __repr__(self) -> str:
-        return f"{self.name}({self.age})"
+import time
+import random
 
 
-def selection_sort_objects(arr: list, key) -> list:
-    """
-    Selection Sort for custom objects using key function.
-
-    Time Complexity: O(n^2)
-    """
+def selection_sort(arr: list[int]) -> list[int]:
     n = len(arr)
 
     for i in range(n):
         min_index = i
 
         for j in range(i + 1, n):
-            if key(arr[j]) < key(arr[min_index]):
+            if arr[j] < arr[min_index]:
                 min_index = j
 
         if min_index != i:
@@ -34,20 +20,24 @@ def selection_sort_objects(arr: list, key) -> list:
     return arr
 
 
+def analyze_performance():
+    """
+    Analyze execution time for different input sizes.
+    """
+    sizes = [100, 200, 500, 1000]
+
+    for size in sizes:
+        arr = [random.randint(1, 1000) for _ in range(size)]
+
+        start_time = time.time()
+        selection_sort(arr)
+        end_time = time.time()
+
+        print(f"Size: {size}, Time Taken: {end_time - start_time:.6f} seconds")
+
+
 def main() -> None:
-    people = [
-        Person("John", 25),
-        Person("Alice", 22),
-        Person("Bob", 30),
-        Person("Eve", 28)
-    ]
-
-    print(f"Original List: {people}")
-
-    # Sort by age
-    sorted_people = selection_sort_objects(people, key=lambda p: p.age)
-
-    print(f"Sorted by Age: {sorted_people}")
+    analyze_performance()
 
 
 if __name__ == "__main__":
