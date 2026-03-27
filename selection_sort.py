@@ -1,8 +1,8 @@
-# UC4 – Handle sorting of duplicate elements correctly.
+# UC5 – Apply Selection Sort on list of strings (lexicographical order).
 
-def selection_sort(arr: list[int]) -> list[int]:
+def selection_sort_strings(arr: list[str]) -> list[str]:
     """
-    Selection Sort handling duplicate elements correctly.
+    Selection Sort for strings (lexicographical order).
 
     Time Complexity: O(n^2)
     """
@@ -12,7 +12,6 @@ def selection_sort(arr: list[int]) -> list[int]:
         min_index = i
 
         for j in range(i + 1, n):
-            # Strict comparison ensures correct duplicate handling
             if arr[j] < arr[min_index]:
                 min_index = j
 
@@ -23,11 +22,11 @@ def selection_sort(arr: list[int]) -> list[int]:
 
 
 def main() -> None:
-    arr = [64, 25, 12, 22, 11, 25, 12]
+    arr = ["banana", "apple", "cherry", "date"]
 
-    print(f"Original Array: {arr}")
-    sorted_arr = selection_sort(arr)
-    print(f"Sorted Array: {sorted_arr}")
+    print(f"Original List: {arr}")
+    sorted_arr = selection_sort_strings(arr)
+    print(f"Sorted List: {sorted_arr}")
 
 
 if __name__ == "__main__":
